@@ -8,7 +8,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
+//import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,7 +23,7 @@ import net.guides.springboot.crud.model.Employee;
 import net.guides.springboot.crud.repository.EmployeeRepository;
 import net.guides.springboot.crud.service.SequenceGeneratorService;
 
-@CrossOrigin(origins = "http://localhost:4200")
+//@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/api/v1")
 public class EmployeeController {
@@ -64,6 +64,8 @@ public class EmployeeController {
 		final Employee updatedEmployee = employeeRepository.save(employee);
 		return ResponseEntity.ok(updatedEmployee);
 	}
+	
+	
 
 	@DeleteMapping("/employees/{id}")
 	public Map<String, Boolean> deleteEmployee(@PathVariable(value = "id") Long employeeId)
@@ -76,4 +78,41 @@ public class EmployeeController {
 		response.put("deleted", Boolean.TRUE);
 		return response;
 	}
+	
+	
+	//Find by Firstname
+	@GetMapping("/employees/fn/{firstName}")
+	public List<Employee> findByFirstName(@PathVariable String firstName)
+	{
+		List<Employee> emp= employeeRepository.findByFirstname(firstName);
+		return emp;	
+	}
+	
+	
+	//Find by Lastname
+	@GetMapping("/employees/ln/{lastName}")
+	public List<Employee> findByLastName(@PathVariable String lastName)
+	{
+		List<Employee> emp= employeeRepository.findByLastname(lastName);
+		return emp;	
+	}
+	
+	
+	//Find by Fullname
+	@GetMapping("/employees/FL/{firstName}/{lastName}")
+	public List<Employee> findByFullName(@PathVariable String firstName, @PathVariable String lastName)
+	{
+		List<Employee> emp=employeeRepository.findByFirstnameAndLastname(firstName, lastName);
+		return emp;
+	}
+	
+	
+	//Find by FirstName Starting With a letter
+	@GetMapping("/employees/SW/{firstName}")
+	public List<Employee> getAllByFirstNamestartingWith(@PathVariable String firstName)
+	{
+		List<Employee> emp=employeeRepository.findByFirstNameStartingWith(firstName);
+		return emp;
+	}
+	
 }

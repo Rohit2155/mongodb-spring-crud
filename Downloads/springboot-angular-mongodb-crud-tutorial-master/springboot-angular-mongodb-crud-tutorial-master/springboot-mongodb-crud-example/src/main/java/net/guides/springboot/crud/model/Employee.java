@@ -19,7 +19,7 @@ public class Employee {
 	
 	@NotBlank
     @Size(max=100)
-    @Indexed(unique=true)
+    //@Indexed
 	private String firstName;
 	private String lastName;
 	
