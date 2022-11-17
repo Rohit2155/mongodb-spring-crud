@@ -25,7 +25,7 @@ import net.guides.springboot.crud.service.SequenceGeneratorService;
 
 //@CrossOrigin(origins = "http://localhost:4200")
 @RestController
-@RequestMapping("/api/v1")
+@RequestMapping("/api")
 public class EmployeeController {
 	@Autowired
 	private EmployeeRepository employeeRepository;

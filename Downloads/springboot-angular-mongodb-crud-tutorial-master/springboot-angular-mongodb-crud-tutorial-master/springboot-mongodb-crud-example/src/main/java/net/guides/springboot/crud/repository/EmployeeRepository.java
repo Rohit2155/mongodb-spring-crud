@@ -20,8 +20,6 @@ public interface EmployeeRepository extends MongoRepository<Employee, Long>{
 	@Query("{'firstName':?0 ,'lastName': ?1}")
 	List<Employee> findByFirstnameAndLastname(String firstName, String lastName);
 	
-	List<Employee> findByFirstNameStartingWith(String firstName);
-	
-	
+	List<Employee> findByFirstNameStartingWith(String firstName);		
 	
 }
